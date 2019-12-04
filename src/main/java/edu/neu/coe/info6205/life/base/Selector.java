@@ -2,13 +2,15 @@ package edu.neu.coe.info6205.life.base;
 
 import java.util.*;
 
+import edu.neu.coe.info6205.life.base.Game.Behavior;
+
 class Selector {
 
     public static void Select(List<String> patternList) {
         Map<String, Long> select = new HashMap<>();
         for(String pattern: patternList){
-            long generation = Game.run(0L, Point.points(pattern));
-            select.put(pattern, generation);
+            Behavior generation = Game.run(0L, pattern);
+            select.put(pattern, generation.generation);
         }
 
         List<Map.Entry<String, Long>> list = new ArrayList<>(select.entrySet());
