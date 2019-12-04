@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Mutator {
+	public Mutator() {
+	}
+	
+	public List<Chromosome> intList(List<Integer> geno){
+		List<Chromosome> ls = new ArrayList<>();
+		geno.forEach(g -> ls.add(new Chromosome(g)));
+		return ls;
+	}
 
-    public static void Mutate(List<Integer> gene) {
+    public List<Integer> Mutate(List<Integer> gene) {
         //List<Integer> gene=new ArrayList<>();
         List<Integer> mutagene=new ArrayList<>();
         for(int i: gene){
@@ -67,5 +75,7 @@ class Mutator {
         }       
         gene.clear();
         for(int i:mutagene) gene.add(i);
+        
+        return mutagene;
     }
 }

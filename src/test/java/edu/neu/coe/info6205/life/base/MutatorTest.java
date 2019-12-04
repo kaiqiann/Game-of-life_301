@@ -17,7 +17,8 @@ public class MutatorTest {
             gene.add(100870022);
             gene.add(208540034);
             List<Integer> origin=new ArrayList<>(gene);
-            Mutator.Mutate(gene);
+            Mutator my = new Mutator();
+            my.Mutate(origin);
             for(int i=0; i<gene.size(); i++)
                 assertNotEquals(gene.get(i), origin.get(i));
     }
@@ -32,7 +33,8 @@ public class MutatorTest {
             gene2.add(100870697);
             gene2.add(208540345);
             List<Integer> origin=new ArrayList<>(gene2);
-            Mutator.Mutate(gene2);
+            Mutator my = new Mutator();
+            my.Mutate(origin);
             for(int i=0; i<gene2.size(); i++)
                 assertNotEquals(gene2.get(i), origin.get(i));
     }
@@ -42,7 +44,8 @@ public class MutatorTest {
             List<Integer> gene3=new ArrayList<>();
             gene3.add(110000000);
             List<Integer> origin=new ArrayList<>(gene3);
-            Mutator.Mutate(gene3);
+            Mutator my = new Mutator();
+            my.Mutate(origin);
             for(int i=0; i<gene3.size(); i++)
                 assertNotEquals(gene3.get(i), origin.get(i));
     }

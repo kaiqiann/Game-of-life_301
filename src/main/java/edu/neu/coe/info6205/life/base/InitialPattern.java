@@ -1,12 +1,15 @@
 package edu.neu.coe.info6205.life.base;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 public class InitialPattern {
 //	private final int population = 1000;
 	private String pattern = "";
+	private List<String> plist = new ArrayList<>();
 	
 	public String getPattern() {
 		return pattern;
@@ -43,13 +46,19 @@ public class InitialPattern {
 			}
 		}
 		pattern = sb.toString();
+		plist.add(pattern);
 //		System.out.println(counter);
 	}
 	
-	public static void main(String args[]) {
+	
+	public List<String> getPlist() {
+		return plist;
+	}
+
+	/*public static void main(String args[]) {
 		InitialPattern ip = new InitialPattern();
 		System.out.println(ip.getPattern());
-	}
+	}*/
 	
 	
 
