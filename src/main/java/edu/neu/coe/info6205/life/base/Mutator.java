@@ -71,7 +71,7 @@ class Mutator {
 
             //重新拼接code
             i=alive*100000000 + y*10000 + x;
-            mutagene.add(i);
+            if(alive == 1) mutagene.add(i);
         }       
         gene.clear();
         for(int i:mutagene) gene.add(i);
