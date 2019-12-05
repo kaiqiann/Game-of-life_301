@@ -28,5 +28,5 @@ public class Genotype {
 		geno.forEach(g -> ls.add(g.getChromosome()));
 		
 		return ls;
-	}
+	} 
 }
