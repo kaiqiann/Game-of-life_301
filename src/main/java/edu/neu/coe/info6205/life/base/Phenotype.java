@@ -12,6 +12,9 @@ public class Phenotype {
 		this.geno = geno;
 		transform(geno);
 	}
+	public Phenotype(String pheno) {
+		this.pheno = pheno;
+	}
 	
 	private void transform(Genotype geno) {
 		StringBuilder sb = new StringBuilder();
