@@ -127,7 +127,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @return
 	 */
 	public static boolean hasCircle(String pattern) {
-		int CIRCLE_NUM = 3;
+//		int CIRCLE_NUM = 10;
 
 		HashMap<Integer, List<Integer>> numMap = new HashMap<Integer, List<Integer>>();
 		List<Integer> clist = new ArrayList<>();
@@ -153,7 +153,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 
 		Collection cl = numMap.values();
 		Iterator itr = cl.iterator();
-		int n = CIRCLE_NUM - 1;
+		int n = Profile.CYCLECHECK_NUM - 1;
 
 		while (itr.hasNext()) {
 			@SuppressWarnings("Glider")
