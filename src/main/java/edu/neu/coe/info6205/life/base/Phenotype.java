@@ -19,10 +19,12 @@ public class Phenotype {
 	private void transform(Genotype geno) {
 		StringBuilder sb = new StringBuilder();
 		geno.getList().forEach(g -> {
-			int x = g.getXaix();
-			int y = g.getYaix();
-			String temp = String.valueOf(x)+" "+String.valueOf(y);
-			sb.append(temp+", ");
+			if(g.isAlive()) {
+				int x = g.getXaix();
+				int y = g.getYaix();
+				String temp = String.valueOf(x)+" "+String.valueOf(y);
+				sb.append(temp+", ");
+			}
 		});
 		pheno = sb.toString();
 	}
