@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.life.base;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 
 import java.util.List;
@@ -25,7 +26,10 @@ public class PhenotypeTest {
 		gn.addChromosome(new Chromosome(103320221));
 		gn.addChromosome(new Chromosome(133863431));
 		String temp = "321 987, 221 332, 3431 3386, ";
+		Mutator mt = new Mutator();
+		List<Integer> temp1 = mt.Mutate(gn.intList(gn.getList()));
+		gn.setGeno(mt.intList(temp1));
 		Phenotype pn = new Phenotype(gn);
-		assertEquals(temp,pn.getPheno());
+		assertNotEquals(temp,pn.getPheno());
 	}
 }
