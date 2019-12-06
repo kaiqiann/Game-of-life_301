@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 
 public class geneticAlgorithm {
 	private List<Double> gList = new ArrayList<>();
+	private List<Double> grList = new ArrayList<>();
 
 	public List<String> initialPopulation() {
 		List<String> population = new ArrayList<>();
