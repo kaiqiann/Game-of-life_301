@@ -18,9 +18,9 @@ public class geneticAlgorithm {
 	}
 
 	public String run(List<String> population) {
-
+		
 		for (int i = 0; i < Profile.MAX_GENERATION; i++) {
-			System.out.println("current:"+ i);
+			System.out.println("current generation:" + (i + 1));
 			Selector.Select(population);
 			List<String> current = new ArrayList<>();
 			for (String s : population) {
@@ -41,6 +41,7 @@ public class geneticAlgorithm {
 				current.add(p.getPheno());
 			}
 			population = current;
+			System.out.println("growth rate: "+"\n");
 		}
 		return Selector.getBest(population);
 	}
