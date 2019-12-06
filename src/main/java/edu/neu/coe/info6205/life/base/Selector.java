@@ -9,18 +9,18 @@ class Selector {
     static double growrate = 0;
 
     public static void Select(List<String> patternList) {
-        Map<String, Long> select = new HashMap<>();
+        Map<String, Double> select = new HashMap<>();
         for(String pattern: patternList){
             Behavior b = Fitness(pattern);
             long generation = b.generation;
             growrate += b.growth;
-            select.put(pattern, generation);
+            select.put(pattern, b.growth);
         }
 
-        List<Map.Entry<String, Long>> list = new ArrayList<>(select.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<String, Long>>() {
+        List<Map.Entry<String, Double>> list = new ArrayList<>(select.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
             @Override
-            public int compare(Map.Entry<String, Long> o1, Map.Entry<String, Long> o2) {
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
                 return o2.getValue().compareTo(o1.getValue());   
             }
         });
@@ -37,17 +37,17 @@ class Selector {
     }
 
     public static String getBest(List<String> patternList) {
-        Map<String, Long> select = new HashMap<>();
+        Map<String, Double> select = new HashMap<>();
         for(String pattern: patternList){
             Behavior b = Fitness(pattern);
-            long generation = b.generation;
-            select.put(pattern, generation);
+            //Double generation = b.generation;
+            select.put(pattern, b.growth);
         }
 
-        List<Map.Entry<String, Long>> list = new ArrayList<>(select.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<String, Long>>() {
+        List<Map.Entry<String, Double>> list = new ArrayList<>(select.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
             @Override
-            public int compare(Map.Entry<String, Long> o1, Map.Entry<String, Long> o2) {
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
                 return o2.getValue().compareTo(o1.getValue());   
             }
         });
