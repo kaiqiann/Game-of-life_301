@@ -3,9 +3,8 @@ package edu.neu.coe.info6205.life.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 public class geneticAlgorithm {
+	private List<Double> gList = new ArrayList<>();
 
 	public List<String> initialPopulation() {
 
@@ -18,7 +17,7 @@ public class geneticAlgorithm {
 	}
 
 	public String run(List<String> population) {
-		
+
 		for (int i = 0; i < Profile.MAX_GENERATION; i++) {
 			Selector.growrate = 0;
 			Selector.gen = 0;
@@ -29,22 +28,27 @@ public class geneticAlgorithm {
 				current.add(s);
 			}
 
-			// population ==> chromosome
 			for (String s : population) {
 				Genotype g = new Genotype();
 				Mutator m = new Mutator();
-
 				g.toChro(s);
-				List<Integer> l = m.Mutate(g.intList(g.getList()));
-				List<Chromosome> cl = m.intList(l);
-				g.setGeno(cl);
-				Phenotype p = new Phenotype(g);
-
-				current.add(p.getPheno());
+				for (int j = 0; j < (1 / Profile.SURVIVE_RATE) - 1; j++) {
+					List<Integer> l = m.Mutate(g.intList(g.getList()));
+					List<Chromosome> cl = m.intList(l);
+					g.setGeno(cl);
+					Phenotype p = new Phenotype(g);
+					current.add(p.getPheno());
+				}
 			}
 			population = current;
-			System.out.println("Average Generation: "+Selector.getGen()+"\n");
+			gList.add(Selector.getGen());
+			System.out.println("Average Generation: " + Selector.getGen() + "\n");
 		}
+		System.out.print("\nAverage generation route: ");
+		for (double d : gList) {
+			System.out.print(" ," + d);
+		}
+		System.out.println();
 		return Selector.getBest(population);
 	}
 }

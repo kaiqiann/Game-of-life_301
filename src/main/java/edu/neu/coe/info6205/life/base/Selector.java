@@ -12,10 +12,10 @@ class Selector {
     public static void Select(List<String> patternList) {
         Map<String, Long> select = new HashMap<>();
         for(String pattern: patternList){
-            Behavior b = Fitness(pattern);
-            long generation = b.generation;
-            growrate += b.growth;
-            select.put(pattern, generation);
+//            Behavior b = Fitness(pattern);
+//            long generation = b.generation;
+//            growrate += b.growth;
+            select.put(pattern, Fitness(pattern));
         }
 
         List<Map.Entry<String, Long>> list = new ArrayList<>(select.entrySet());
@@ -27,23 +27,25 @@ class Selector {
         });
 
         patternList.clear();
-        for (int i=0; i<list.size()/2; i++) {
+        for (int i=0; i<list.size()/(1/Profile.SURVIVE_RATE); i++) {
             patternList.add(list.get(i).getKey());
             gen += list.get(i).getValue();
         }
     }
 
-    public static Behavior Fitness(String pattern){
-        Behavior generations = Game.run(0L, pattern);
+    public static long Fitness(String pattern){
+        //Behavior generations = Game.run(0L, pattern);
+        long generations = Game.cRun(pattern);
         return generations; 
     }
 
     public static String getBest(List<String> patternList) {
         Map<String, Long> select = new HashMap<>();
         for(String pattern: patternList){
-            Behavior b = Fitness(pattern);
-            long generation = b.generation;
-            select.put(pattern, generation);
+//            Behavior b = Fitness(pattern);
+//            long generation = b.generation;
+//            select.put(pattern, generation);
+        	select.put(pattern, Fitness(pattern));
         }
 
         List<Map.Entry<String, Long>> list = new ArrayList<>(select.entrySet());
@@ -62,6 +64,6 @@ class Selector {
     }
     
     public static double getGen() {
-    	return gen / (Profile.GA_POPULATION/2);
+    	return gen / (Profile.GA_POPULATION*Profile.SURVIVE_RATE);
     }
 }
