@@ -137,6 +137,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @param pattern
 	 * @return
 	 */
+
 	public static Behavior cRun(String pattern) {
 		HashMap<Integer, List<Integer>> numMap = new HashMap<Integer, List<Integer>>();
 		List<Integer> clist = new ArrayList<>();
@@ -281,7 +282,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		// return run(create(generation, points), (l, g) ->
 		// System.out.println("generation " + l + "; grid=" + g),
 		return run(create(generation, points), (l, g) -> System.out.print(""), maxGenerations);
-	}
+  }
 
 	/**
 	 * Factory method to create a new Game starting at the given generation and with
@@ -297,6 +298,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		grid.add(Group.create(generation, points));
 //		BiConsumer<Long, Group> groupMonitor = (l, g) -> System.out
 //				.println("generation " + l + ";\ncount=" + g.getCount());
+
 		BiConsumer<Long, Group> groupMonitor = (l, g) -> System.out.print("");
 		return new Game(generation, grid, null, groupMonitor);
 	}
@@ -451,7 +453,6 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 
 	private boolean testTerminationPredicate(Predicate<Game> predicate, String message) {
 		if (predicate.test(this)) {
-			// System.out.println("Terminating due to: " + message);
 			return true;
 		}
 		return false;

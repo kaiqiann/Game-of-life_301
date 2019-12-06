@@ -87,3 +87,4 @@ class Selector {
 		return gen / (Profile.GA_POPULATION * Profile.SURVIVE_RATE);
 	}
 }
+

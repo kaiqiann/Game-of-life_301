@@ -32,4 +32,17 @@ public class PhenotypeTest {
 		Phenotype pn = new Phenotype(gn);
 		assertNotEquals(temp,pn.getPheno());
 	}
+	
+	@Test
+	public void Phenoalivetest() {
+		Genotype gn = new Genotype();
+		gn.addChromosome(new Chromosome(209870321));
+		gn.addChromosome(new Chromosome(203320221));
+		gn.addChromosome(new Chromosome(133863431));
+		gn.addChromosome(new Chromosome(237864031));
+		
+		String temp = "3431 3386, ";
+		Phenotype pn = new Phenotype(gn);
+		assertEquals(temp,pn.getPheno());
+	}
 }

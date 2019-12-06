@@ -10,6 +10,15 @@ public class Genotype {
 		geno = new ArrayList<>();
 	}
 	
+	public void toChro(String p){
+		for (String w : p.split(", *")) {
+			String[] ws = w.split(" ");
+			int x = Integer.parseInt(ws[0]);
+			int y = Integer.parseInt(ws[1]);
+			int chro = 100000000+y*10000+x;
+			geno.add(new Chromosome(chro));
+		}
+	}
 	public void addChromosome(Chromosome chromosome) {
 		geno.add(chromosome);
 	}
@@ -28,5 +37,6 @@ public class Genotype {
 		geno.forEach(g -> ls.add(g.getChromosome()));
 		
 		return ls;
-	} 
+	}
+
 }
