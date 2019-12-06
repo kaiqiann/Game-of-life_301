@@ -9,16 +9,6 @@ public class geneticAlgorithm {
 	private List<Double> gList = new ArrayList<>();
 
 	public List<String> initialPopulation() {
-
-		List<String> population = new ArrayList<>();
-		for (int i = 0; i < Profile.GA_POPULATION; i++) {
-			InitialPattern ip = new InitialPattern();
-			population.add(ip.getPattern());
-		}
-		return population;
-	}
-
-
 		List<String> population = new ArrayList<>();
 		int j = 0;
 		for (int i = 0; i < Profile.GA_POPULATION; i++) {
