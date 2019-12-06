@@ -113,12 +113,11 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	public static void main(String[] args) {
 //		String patternName = args.length > 0 ? args[0] : "Loaf";
 //		System.out.println("Game of Life with starting pattern: " + patternName);
-//		final String pattern = Library.get(patternName);
-//		// hasCircle(pattern);
-//		final Behavior generations = run(0L, pattern);
-//		System.out.println("Ending Game of Life after " + generations + "generations");
+		
 		geneticAlgorithm ga = new geneticAlgorithm();
-		hasCircle(ga.run(ga.initialPopulation()));
+		final String pattern = ga.run(ga.initialPopulation());
+		final Behavior generations = run(0L, pattern);
+		System.out.println("Ending Game of Life after " + generations + "generations");
 	}
 	/**
 	 * The function to check whether a Pattern will fall into circle
@@ -127,7 +126,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @return
 	 */
 	public static boolean hasCircle(String pattern) {
-//		int CIRCLE_NUM = 10;
+		int CIRCLE_NUM = 3;
 
 		HashMap<Integer, List<Integer>> numMap = new HashMap<Integer, List<Integer>>();
 		List<Integer> clist = new ArrayList<>();
@@ -153,7 +152,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 
 		Collection cl = numMap.values();
 		Iterator itr = cl.iterator();
-		int n = Profile.CYCLECHECK_NUM - 1;
+		int n = CIRCLE_NUM - 1;
 
 		while (itr.hasNext()) {
 			@SuppressWarnings("Glider")
