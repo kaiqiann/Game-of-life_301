@@ -6,10 +6,14 @@ import edu.neu.coe.info6205.life.base.Game.Behavior;
 
 class Selector {
 
+    static double growrate;
+
     public static void Select(List<String> patternList) {
         Map<String, Long> select = new HashMap<>();
         for(String pattern: patternList){
-            long generation = Fitness(pattern);
+            Behavior b = Fitness(pattern);
+            long generation = b.generation;
+            growrate += b.growth;
             select.put(pattern, generation);
         }
 
@@ -27,15 +31,16 @@ class Selector {
         }
     }
 
-    public static long Fitness(String pattern){
+    public static Behavior Fitness(String pattern){
         Behavior generations = Game.run(0L, pattern);
-        return generations.generation; 
+        return generations; 
     }
 
     public static String getBest(List<String> patternList) {
         Map<String, Long> select = new HashMap<>();
         for(String pattern: patternList){
-            long generation = Fitness(pattern);
+            Behavior b = Fitness(pattern);
+            long generation = b.generation;
             select.put(pattern, generation);
         }
 
@@ -48,5 +53,9 @@ class Selector {
         });
 
         return list.get(0).getKey();
+    }
+
+    public double getRate() {
+        return growrate / Profile.GA_POPULATION;
     }
 }
