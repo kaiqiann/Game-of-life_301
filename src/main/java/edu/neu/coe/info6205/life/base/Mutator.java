@@ -1,13 +1,16 @@
 package edu.neu.coe.info6205.life.base;
 
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 class Mutator {
-	public Mutator() {
+    
+    Random rd = new Random(Profile.RANDOM_SEED);
+
+    public Mutator() {
 	}
-	
+
 	public List<Chromosome> intList(List<Integer> geno){
 		List<Chromosome> ls = new ArrayList<>();
 		geno.forEach(g -> ls.add(new Chromosome(g)));
@@ -21,15 +24,15 @@ class Mutator {
             int x=i % 10000;
             int y=(i/10000) % 10000;
             int alive=i/100000000;
-            double xNum = Math.random();
-            double yNum = Math.random();
-            double liveNum = Math.random();
-            double muteNum = Math.random();
+            double xNum = rd.nextDouble();
+            double yNum = rd.nextDouble();
+            double liveNum = rd.nextDouble();
+            double muteNum = rd.nextDouble();
             
             // Mutate the genecode，第一位为1/2，1代表存活，2代表死亡
             // 2-5位为y，6-9位为x
             if(muteNum < 0.5) {
-                double xr = Math.random();
+                double xr = rd.nextDouble();
                 if(xr < 0.5){
                     if(xNum < 0.5 && (x+10)<=1000) {
                         x+=10;
@@ -46,7 +49,7 @@ class Mutator {
                     }
                 }  
             } else {
-                double yr = Math.random();
+                double yr = rd.nextDouble();
                 if(yr < 0.5) {
                     if(yNum < 0.5 && (y+10)<=1000) {
                         y+=10;
