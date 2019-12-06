@@ -137,7 +137,9 @@ public class Grid implements Generational<Grid, Group>, Countable, Renderable {
 				forEach(g -> monitor.accept(generation, g));
 				if (groups == null)
 						throw new LifeException("logic error: groups is null");
-				final List<Group> newGroups = this.groups.stream().map(g -> g.generation((l, group) -> System.out.println("Group generation: " + l))).collect(Collectors.toList());
+				/////////////////////
+				//final List<Group> newGroups = this.groups.stream().map(g -> g.generation((l, group) -> System.out.println("Group generation: " + l))).collect(Collectors.toList());
+				final List<Group> newGroups = this.groups.stream().map(g -> g.generation((l, group) -> System.out.print(""))).collect(Collectors.toList());
 				return new Grid(generation + 1, mergeGroups(newGroups));
 		}
 
