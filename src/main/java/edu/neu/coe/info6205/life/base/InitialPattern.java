@@ -31,6 +31,7 @@ public class InitialPattern {
 	public void initialize(long seed) {
 		StringBuilder sb = new StringBuilder();
 		Set<String> hs = new HashSet<String>();
+
 		Random rd = new Random(seed);
 //		int i =0;
 		/*while(i < Profile.initialcount) {
