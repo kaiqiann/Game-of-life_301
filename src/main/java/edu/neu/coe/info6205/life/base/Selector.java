@@ -6,7 +6,7 @@ import edu.neu.coe.info6205.life.base.Game.Behavior;
 
 class Selector {
 
-    static double growrate;
+    static double growrate = 0;
 
     public static void Select(List<String> patternList) {
         Map<String, Long> select = new HashMap<>();
@@ -55,7 +55,7 @@ class Selector {
         return list.get(0).getKey();
     }
 
-    public double getRate() {
+    public static double getRate() {
         return growrate / Profile.GA_POPULATION;
     }
 }
