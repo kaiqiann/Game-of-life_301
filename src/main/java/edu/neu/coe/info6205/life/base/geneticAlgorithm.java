@@ -20,11 +20,10 @@ public class geneticAlgorithm {
 	}
 
 	public String run(List<String> population) {
-		
+
 		for (int i = 0; i < Profile.MAX_GENERATION; i++) {
 			Selector.growrate = 0;
 			Selector.gen = 0;
-
 			System.out.println("current generation:" + (i + 1));
 			Selector.Select(population);
 			List<String> current = new ArrayList<>();
@@ -46,14 +45,20 @@ public class geneticAlgorithm {
 			}
 			population = current;
 			gList.add(Selector.getGen());
-			System.out.println("Average Generation: " + Selector.getGen() + "\n");
+			grList.add(Selector.getRate());
+
+			System.out.println("Average Generation: " + Selector.getGen());
+			System.out.println("Average Growth Rate: " + Selector.getRate() + "\n");
 		}
 		System.out.print("\nAverage generation route: ");
 		for (double d : gList) {
 			System.out.print(" ," + d);
 		}
+		System.out.print("\nAverage Growth Rate route: ");
+		for (double d : grList) {
+			System.out.print(" ," + d);
+		}
 		System.out.println();
-
 		return Selector.getBest(population);
 	}
 }
