@@ -28,8 +28,8 @@ public class InitialPattern {
 		StringBuilder sb = new StringBuilder();
 //		int counter = 0;
 		Set<String> hs = new HashSet<String>();
-		for(int  x = 1; x <=20; x=x+3) {
-			for(int y = 1; y <=20; y=y+3) {
+		for(int  x = 1; x <=9; x=x+3) {
+			for(int y = 1; y <=9; y=y+3) {
 				String temp = String.valueOf(x)+" "+String.valueOf(y);
 				sb.append(temp+ ", ");
 				hs.add(temp);

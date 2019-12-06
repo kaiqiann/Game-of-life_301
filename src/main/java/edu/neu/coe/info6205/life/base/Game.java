@@ -103,7 +103,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		return generations > 0 ? growth * 1.0 / generations : -0.1;
 	}
 
-	public static final int MaxGenerations = 1000;
+	public static final int MaxGenerations = 2000;
 
 	/**
 	 * Main program for Game of Life.
@@ -111,10 +111,13 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @param args the name of the starting pattern (defaults to "Blip")
 	 */
 	public static void main(String[] args) {
-		String patternName = args.length > 0 ? args[0] : "Loaf";
-		System.out.println("Game of Life with starting pattern: " + patternName);
-		final String pattern = Library.get(patternName);
-		// hasCircle(pattern);
+//		String patternName = args.length > 0 ? args[0] : "Loaf";
+//		System.out.println("Game of Life with starting pattern: " + patternName);
+//		final String pattern = Library.get(patternName);
+//		final Behavior generations = run(0L, pattern);
+//		System.out.println("Ending Game of Life after " + generations + "generations");
+		geneticAlgorithm ga = new geneticAlgorithm();
+		final String pattern =ga.run(ga.initialPopulation());
 		final Behavior generations = run(0L, pattern);
 		System.out.println("Ending Game of Life after " + generations + "generations");
 	}
@@ -126,13 +129,13 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @return
 	 */
 	public static boolean hasCircle(String pattern) {
-		int CIRCLE_NUM = 3;
-
 		HashMap<Integer, List<Integer>> numMap = new HashMap<Integer, List<Integer>>();
 		List<Integer> clist = new ArrayList<>();
 		int index = 0;
 		Game g = create(0L, Point.points(pattern));
-		BiConsumer<Long, Grid> gridMonitor = (l, gd) -> System.out.println("generation " + l + "; grid=" + gd);
+		// BiConsumer<Long, Grid> gridMonitor = (l, gd) ->
+		// System.out.println("generation " + l + "; grid=" + gd);
+		BiConsumer<Long, Grid> gridMonitor = (l, gd) -> System.out.print("");
 		// !g.terminated() &&
 		while (index < 1000) {
 			int count = g.getCount();
@@ -147,18 +150,13 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 			index++;
 		}
 
-//		System.out.print(clist);
-//		System.out.println();
-
 		Collection cl = numMap.values();
 		Iterator itr = cl.iterator();
-		int n = CIRCLE_NUM - 1;
+		int n = Profile.CYCLECHECK_NUM - 1;
 
 		while (itr.hasNext()) {
 			@SuppressWarnings("Glider")
 			List<Integer> list = (List<Integer>) itr.next();
-//			System.out.print(list);
-//			System.out.println();
 			if (list.size() >= 2) {
 				for (int i = 0; i < list.size() - 1; i++) {
 					for (int j = i + 1; j < list.size()
@@ -216,13 +214,16 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @return the generation at which the game expired.
 	 */
 	public static Behavior run(long generation, List<Point> points, int maxGenerations) {
-		return run(create(generation, points), (l, g) -> System.out.println("generation " + l + "; grid=" + g),
+		// return run(create(generation, points), (l, g) ->
+		// System.out.println("generation " + l + "; grid=" + g),
+		return run(create(generation, points), (l, g) -> System.out.print(""),
 				maxGenerations);
 	}
 
 	/**
 	 * Factory method to create a new Game starting at the given generation and with
-	 * the given points.
+	 * the given points.69
+	 * 
 	 * 
 	 * @param generation the starting generation.
 	 * @param points     a list of points in Grid coordinates.
@@ -231,8 +232,10 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	public static Game create(long generation, List<Point> points) {
 		final Grid grid = new Grid(generation);
 		grid.add(Group.create(generation, points));
+//		BiConsumer<Long, Group> groupMonitor = (l, g) -> System.out
+//				.println("generation " + l + ";\ncount=" + g.getCount());
 		BiConsumer<Long, Group> groupMonitor = (l, g) -> System.out
-				.println("generation " + l + ";\ncount=" + g.getCount());
+				.print("");
 		return new Game(generation, grid, null, groupMonitor);
 	}
 
@@ -385,7 +388,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 
 	private boolean testTerminationPredicate(Predicate<Game> predicate, String message) {
 		if (predicate.test(this)) {
-			System.out.println("Terminating due to: " + message);
+			//System.out.println("Terminating due to: " + message);
 			return true;
 		}
 		return false;
