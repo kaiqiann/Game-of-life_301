@@ -137,7 +137,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @param pattern
 	 * @return
 	 */
-	public static long cRun(String pattern) {
+	public static Behavior cRun(String pattern) {
 		HashMap<Integer, List<Integer>> numMap = new HashMap<Integer, List<Integer>>();
 		List<Integer> clist = new ArrayList<>();
 		int index = 0;
@@ -180,14 +180,16 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 						}
 						if (l == 0) {
 							System.out.println("has cycle: " + index + " generations");
-							return index / 50;
+							return new Behavior(g.generation/50,g.growthRate(),0);
+							//return index/50;
 						}
 					}
 				}
 			}
 		}
 		System.out.println("no  cycle: " + index + " generations");
-		return index;
+		//return index;
+		return new Behavior(g.generation,g.growthRate(),0);
 	}
 
 	public static boolean hasCircle(String pattern) {

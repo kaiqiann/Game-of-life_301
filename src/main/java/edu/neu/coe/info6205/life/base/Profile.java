@@ -1,7 +1,19 @@
 package edu.neu.coe.info6205.life.base;
 
 public class Profile {
-	static final int MAX_GENERATION = 10000;
-	static final int CYCLECHECK_NUM = 3;
-	static final int GA_POPULATION = 1000;
+	//Game of Life
+	static final int GAME_MAX_GENERATION = 2000;
+	
+	//Genetic Algorithm
+	static final int MAX_GENERATION = 15;
+	
+	static final int GA_POPULATION = 20;
+	
+	static final double SURVIVE_RATE = 0.25;
+	
+	static final int CYCLECHECK_NUM = 20;
+	
+	
+	
+	
 }
