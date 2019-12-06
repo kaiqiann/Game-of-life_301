@@ -6,13 +6,14 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 public class geneticAlgorithm {
-
 	public List<String> initialPopulation() {
 
 		List<String> population = new ArrayList<>();
+		int j = 0;
 		for (int i = 0; i < Profile.GA_POPULATION; i++) {
-			InitialPattern ip = new InitialPattern();
+			InitialPattern ip = new InitialPattern(Profile.RANDOM_SEED+j);
 			population.add(ip.getPattern());
+			j+=2000;
 		}
 		return population;
 	}
