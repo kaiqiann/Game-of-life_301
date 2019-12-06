@@ -28,7 +28,7 @@ class Selector {
 					return -1;
 				else if (o2.getValue().growth > o1.getValue().growth)
 					return 1;
-				else if(o2.getValue().growth > o1.getValue().growth)
+				else if(o2.getValue().growth < o1.getValue().growth)
 					return -1;
 				return 0;
 			}
