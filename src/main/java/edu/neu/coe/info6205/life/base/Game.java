@@ -114,11 +114,12 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 //		String patternName = args.length > 0 ? args[0] : "Loaf";
 //		System.out.println("Game of Life with starting pattern: " + patternName);
 //		final String pattern = Library.get(patternName);
-//		// hasCircle(pattern);
 //		final Behavior generations = run(0L, pattern);
 //		System.out.println("Ending Game of Life after " + generations + "generations");
 		geneticAlgorithm ga = new geneticAlgorithm();
-		hasCircle(ga.run(ga.initialPopulation()));
+		final String pattern = Library.get(ga.run(ga.initialPopulation()));
+		final Behavior generations = run(0L, pattern);
+		System.out.println("Ending Game of Life after " + generations + "generations");
 	}
 
 	/**
@@ -149,9 +150,6 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 			index++;
 		}
 
-//		System.out.print(clist);
-//		System.out.println();
-
 		Collection cl = numMap.values();
 		Iterator itr = cl.iterator();
 		int n = Profile.CYCLECHECK_NUM - 1;
@@ -159,8 +157,6 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		while (itr.hasNext()) {
 			@SuppressWarnings("Glider")
 			List<Integer> list = (List<Integer>) itr.next();
-//			System.out.print(list);
-//			System.out.println();
 			if (list.size() >= 2) {
 				for (int i = 0; i < list.size() - 1; i++) {
 					for (int j = i + 1; j < list.size()
