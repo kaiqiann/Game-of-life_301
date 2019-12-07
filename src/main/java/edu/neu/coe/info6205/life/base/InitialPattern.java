@@ -51,7 +51,7 @@ public class InitialPattern {
 					sb.append(temp+ ", ");
 				}
 //				rd = new Random(Profile.RANDOM_SEED);
-				int random = (int) (rd.nextDouble()*7);
+				int random = (int) (rd.nextDouble()*6);
 				for(int i =0; i<random;i++) {
 //					rd = new Random(Profile.RANDOM_SEED+10000);
 					int xaix = (int) (rd.nextDouble()*3)+x;
