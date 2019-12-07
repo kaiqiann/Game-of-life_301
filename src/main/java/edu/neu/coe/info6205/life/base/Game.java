@@ -120,7 +120,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @param args the name of the starting pattern (defaults to "Blip")
 	 */
 	public static void main(String[] args) {
-/		long seed = System.currentTimeMillis();
+		long seed = System.currentTimeMillis();
 		System.out.println("-------------------------");
 		System.out.println("|  Seed: "+seed+"  |");
 		System.out.println("-------------------------\n");
