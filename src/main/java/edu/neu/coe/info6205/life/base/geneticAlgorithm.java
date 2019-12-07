@@ -8,7 +8,8 @@ import com.google.common.collect.Lists;
 public class geneticAlgorithm {
 	private List<Double> gList = new ArrayList<>();
 	private List<Double> grList = new ArrayList<>();
-
+	private Mutator m = new Mutator();
+	
 	public List<String> initialPopulation() {
 		List<String> population = new ArrayList<>();
 		int j = 0;
@@ -34,7 +35,7 @@ public class geneticAlgorithm {
 
 			for (String s : population) {
 				Genotype g = new Genotype();
-				Mutator m = new Mutator();
+
 				g.toChro(s);
 				for (int j = 0; j < (1 / Profile.SURVIVE_RATE) - 1; j++) {
 					List<Integer> l = m.Mutate(g.intList(g.getList()));

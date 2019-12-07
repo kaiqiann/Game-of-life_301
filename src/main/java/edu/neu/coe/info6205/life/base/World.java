@@ -14,7 +14,7 @@ public class World extends JPanel implements Runnable{
 	JLabel  record;
 	boolean diy=false;
 	boolean clean=false;
-	private int speed=1;
+	private int speed=0;
 	private int lnum;
 	private static int shape[][]=new int [300][300];
 	private static int zero[][]=new int [300][300];
@@ -24,11 +24,16 @@ public class World extends JPanel implements Runnable{
 	private CellStatus[][] currentGeneration;
 	private CellStatus[][] nextGeneration;
 	private volatile boolean isChanging = false;
-	
-	public World(int rows, int columns)
+	private static String pattern;
+	private static int count;
+
+	public World(int rows, int columns, String s, int c)
 	{
+		this.count = c;
+		this.pattern = s;
 		this.rows=rows;
 		this.columns=columns;
+		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		record = new JLabel();
 		add(record);
 		generation1=new CellStatus[rows][columns];
@@ -72,8 +77,10 @@ public class World extends JPanel implements Runnable{
 //		begintime=System.currentTimeMillis();
 		while(true)
 		{
+
 			synchronized(this)
 			{
+
 				while(isChanging)
 				{
 					
@@ -134,6 +141,11 @@ public class World extends JPanel implements Runnable{
 					g.setColor(Color.BLACK);
 					g.fillRect(j*5, i*5, 5, 5);
 					lnum++;
+					if(lnum ==World.count) {
+						setPause();
+						System.out.println(lnum);
+						break;
+					}
 				}
 				else
 				{
@@ -146,27 +158,28 @@ public class World extends JPanel implements Runnable{
 
 	public void setShape()
 	{
-		setShape(shape);
+		
+		setShape(helper(World.pattern));
+		
 	}
-	public void setRandom()
+	public int[][] helper(String s)
 	{
-		Random a=new Random();
-		InitialPattern ip = new InitialPattern(Profile.RANDOM_SEED);
 		Genotype g = new Genotype();
-		Mutator m = new Mutator();
 
-		g.toChro(ip.getPattern());
+		g.toChro(s);
 		List<Integer> l = g.intList(g.getList());
 		
 		l.forEach(i ->{
-			int x=i % 10000;
-            int y=(i/10000) % 10000;
+			int x=i % 10000+80;
+            int y=(i/10000) % 10000+80;
             int alive=i/100000000;
             shape[x][y] = alive;
             pauseshape[x][y] = shape[x][y];
 		});
 		setShapetemp(shape);
+		return shape;
 	}
+	
 	public void setZero()
 	{
 		for(int i=0;i<rows;i++)
@@ -205,6 +218,7 @@ public class World extends JPanel implements Runnable{
 		int minimunColumns=(arrowsColumns<columns)?arrowsColumns:columns;
 		synchronized(this)
 		{
+
 			for(int i=0;i<rows;i++)
 			{
 				for(int j=0;j<columns;j++)

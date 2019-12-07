@@ -11,7 +11,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
 public class Game implements Generational<Game, Grid>, Countable, Renderable {
-
+	private static int count;
+	
 	/**
 	 * Method to get the cell count.
 	 *
@@ -128,6 +129,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		final String pattern = ga.run(ga.initialPopulation());
 		System.out.println("Final Pattern: " + pattern);
 		final Behavior generations = run(0L, pattern);
+		LifeGame.run(pattern,Game.count);
 		System.out.println("Ending Game of Life after " + generations + "generations");
 	}
 
@@ -148,6 +150,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		BiConsumer<Long, Grid> gridMonitor = (l, gd) -> System.out.print("");
 
 		while (!g.terminated() && index < Profile.GAME_MAX_GENERATION) {
+			
 			int count = g.getCount();
 			clist.add(count);
 			if (numMap.containsKey(count)) {
@@ -159,7 +162,8 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 			g = g.generation(gridMonitor);
 			index++;
 		}
-
+		System.out.println("Count :" +g.getCount());
+		Game.count = g.getCount();
 		Collection cl = numMap.values();
 		Iterator itr = cl.iterator();
 		int n = Profile.CYCLECHECK_NUM - 1;
@@ -180,7 +184,8 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 							j1++;
 						}
 						if (l == 0) {
-							System.out.println("has cycle: " + index + " generations");
+							System.out.println("growth rate: " + g.growthRate() );
+							System.out.println("has cycle: " + index + " generations\n");
 							return new Behavior(g.generation/50,g.growthRate(),0);
 							//return index/50;
 						}
@@ -188,7 +193,8 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 				}
 			}
 		}
-		System.out.println("no  cycle: " + index + " generations");
+		System.out.println("growth rate: " + g.growthRate());
+		System.out.println("no  cycle: " + index + " generations\n");
 		//return index;
 		return new Behavior(g.generation,g.growthRate(),0);
 	}
@@ -317,6 +323,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		Game g = game;
 		while (!g.terminated())
 			g = g.generation(gridMonitor);
+//		System.out.println("Count : " +g.getCount());
 		int reason = g.generation >= maxGenerations ? 2 : g.getCount() <= 1 ? 0 : 1;
 		return new Behavior(g.generation, g.growthRate(), reason);
 	}

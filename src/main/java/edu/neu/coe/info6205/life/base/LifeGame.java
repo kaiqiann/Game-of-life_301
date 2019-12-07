@@ -12,18 +12,17 @@ public class LifeGame extends JFrame {
 	private final World world;
 	//JButton button = new JButton ("button");
 	static JMenu location=new JMenu();
-	public LifeGame(int rows,int columns)
+	public LifeGame(int rows,int columns,String s,int c)
 	{
-		world=new World(rows, columns);
+		world=new World(rows, columns, s, c);
 		world.setBackground(Color.WHITE);
 		Thread n = new Thread(world);
 		n.start();
 		getContentPane().add(world);
 	}
 	
-	public static void main(String[]args)
-	{
-		LifeGame frame = new LifeGame(300, 300);
+	public static void run(String s, int c){
+		LifeGame frame = new LifeGame(300, 300, s, c);
 		
 		JMenuBar menu=new JMenuBar();
 		frame.setJMenuBar(menu);
@@ -34,35 +33,19 @@ public class LifeGame extends JFrame {
 	
 		JMenuItem start=options.add("Start");
 		start.addActionListener(frame.new StartActionListener());
-		JMenuItem random=options.add("Random");
-		random.addActionListener(frame.new RandomActionListener());
-		
-		JMenuItem stop=options.add("Stop");
-		stop.addActionListener(frame.new StopActionListener());
+
 		JMenuItem pause=options.add("Pause");
 		pause.addActionListener(frame.new PauseActionListener());
 
-		JMenuItem clean=options.add("Kill");
-		clean.addActionListener(frame.new CleanActionListener());
 		
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(1007,859);
+		frame.setSize(1000,1000);
 		frame.setTitle("Game of Life");
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-	class RandomActionListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e) 
-		{
-			world.diy=false;
-			world.clean=false;
-			world.setBackground(Color.WHITE);
-			//world.setStop();
-			world.setRandom();
-		}
-	}
+
 	class StartActionListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -74,17 +57,7 @@ public class LifeGame extends JFrame {
 			world.setShape();
 		}
 	}
-	class StopActionListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e) 
-		{
-			//world.time=0;
-			world.setBackground(Color.WHITE);
-			world.diy=false;
-			world.clean=false;
-			world.setStop();
-		}
-	}
+
 	class PauseActionListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -96,16 +69,6 @@ public class LifeGame extends JFrame {
 		}
 	}
 
-	class CleanActionListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e) 
-		{
-			world.setPause();
-			world.clean=true;
-			world.diy=false;
-			world.setBackground(Color.orange);
-		}
-	}
 
 }
 
