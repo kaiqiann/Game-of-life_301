@@ -19,8 +19,9 @@ public class MutatorTest {
             List<Integer> origin=new ArrayList<>(gene);
             Mutator my = new Mutator();
             List<Integer> gene1 = my.Mutate(origin);
-            for(int i=0; i<gene1.size(); i++)
-                assertNotEquals(gene1.get(i), origin.get(i));
+            // for(int i=0; i<gene1.size(); i++)
+            //     assertNotEquals(gene1.get(i), origin.get(i));
+            assertNotEquals(gene.size(), gene1.size());
     }
 
     @Test
@@ -32,22 +33,25 @@ public class MutatorTest {
             gene2.add(208540034);
             gene2.add(100870697);
             gene2.add(208540345);
-            List<Integer> origin=new ArrayList<>(gene2);
-            Mutator my = new Mutator();
-            List<Integer> gene1 = my.Mutate(origin);
-            for(int i=0; i<gene1.size(); i++)
-                assertNotEquals(gene1.get(i), origin.get(i));
+            List<Integer> origin2=new ArrayList<>(gene2);
+            Mutator my2 = new Mutator();
+            List<Integer> gene11 = my2.Mutate(origin2);
+            // for(int i=0; i<gene1.size(); i++)
+            //     assertNotEquals(gene1.get(i), origin.get(i));
+            assertEquals(gene11.size(), gene2.size());
+            
     }
 
     @Test
     public void testMutator3() {
             List<Integer> gene3=new ArrayList<>();
             gene3.add(110000000);
-            List<Integer> origin=new ArrayList<>(gene3);
-            Mutator my = new Mutator();
-            List<Integer> gene1 = my.Mutate(origin);
-            for(int i=0; i<gene1.size(); i++)
-                assertNotEquals(gene1.get(i), origin.get(i));
+            List<Integer> origin3=new ArrayList<>(gene3);
+            Mutator my3 = new Mutator();
+            List<Integer> gene13 = my3.Mutate(origin3);
+            // for(int i=0; i<gene1.size(); i++)
+            //     assertNotEquals(gene1.get(i), origin.get(i));
+            assertEquals(gene13.size(), gene3.size());
     }
 
 }
