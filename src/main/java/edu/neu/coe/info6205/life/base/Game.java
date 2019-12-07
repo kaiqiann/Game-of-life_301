@@ -120,11 +120,12 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	 * @param args the name of the starting pattern (defaults to "Blip")
 	 */
 	public static void main(String[] args) {
-//		String patternName = args.length > 0 ? args[0] : "Loaf";
-//		System.out.println("Game of Life with starting pattern: " + patternName);
-//		final String pattern = Library.get(patternName);
-//		final Behavior generations = run(0L, pattern);
-//		System.out.println("Ending Game of Life after " + generations + "generations");
+/		long seed = System.currentTimeMillis();
+		System.out.println("-------------------------");
+		System.out.println("|  Seed: "+seed+"  |");
+		System.out.println("-------------------------\n");
+		Profile.RANDOM_SEED = seed;
+		
 		geneticAlgorithm ga = new geneticAlgorithm();
 		final String pattern = ga.run(ga.initialPopulation());
 		System.out.println("Final Pattern: " + pattern);
