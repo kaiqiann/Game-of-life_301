@@ -129,7 +129,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		geneticAlgorithm ga = new geneticAlgorithm();
 		final String pattern = ga.run(ga.initialPopulation());
 		System.out.println("Final Pattern: " + pattern);
-		final Behavior generations = run(0L, pattern);
+		final Behavior generations = cRun(pattern);
 		LifeGame.run(pattern,Game.count);
 		System.out.println("Ending Game of Life after " + generations + "generations");
 	}
