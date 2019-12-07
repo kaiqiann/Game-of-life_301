@@ -141,11 +141,7 @@ public class World extends JPanel implements Runnable{
 					g.setColor(Color.BLACK);
 					g.fillRect(j*5, i*5, 5, 5);
 					lnum++;
-					if(lnum ==World.count) {
-						setPause();
-						System.out.println(lnum);
-						break;
-					}
+
 				}
 				else
 				{
@@ -154,6 +150,11 @@ public class World extends JPanel implements Runnable{
 				}
 			}
 		}
+		if(lnum ==World.count) {
+			setPause();
+			System.out.println(lnum);
+		}
+
 	}
 
 	public void setShape()

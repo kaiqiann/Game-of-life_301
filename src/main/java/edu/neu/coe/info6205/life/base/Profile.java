@@ -2,12 +2,12 @@ package edu.neu.coe.info6205.life.base;
 
 public class Profile {
 	//Game of Life
-	static final int GAME_MAX_GENERATION = 2000;
+	static final int GAME_MAX_GENERATION = 1000;
 	
 	//Genetic Algorithm
-	static final int MAX_GENERATION = 15;
+	static final int MAX_GENERATION = 3;
 	
-	static final int GA_POPULATION = 20;
+	static final int GA_POPULATION = 4;
 	
 	static final int CYCLECHECK_NUM = 10;
 	
@@ -21,6 +21,6 @@ public class Profile {
 	
 	static final double DELETE_PROBABILITY = 0.15;
 	
-	static final double MUTATE_PROBABILITY = 0.2;
+	static final double MUTATE_PROBABILITY = 1;
 	
 }

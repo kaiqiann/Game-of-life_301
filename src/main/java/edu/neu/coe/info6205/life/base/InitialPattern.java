@@ -43,8 +43,8 @@ public class InitialPattern {
 			i++;
 		}*/
 		
-		for(int  x = 0; x <=20; x=(int) (x+rd.nextDouble()*5)) {
-			for(int y = 0; y <=30; y=(int) (y+rd.nextDouble()*5)) {
+		for(int  x = 0; x <=15; x=(int) (x+rd.nextDouble()*4)) {
+			for(int y = 0; y <=15; y=(int) (y+rd.nextDouble()*4)) {
 				String temp = String.valueOf(x)+" "+String.valueOf(y);
 				if(!hs.contains(temp)) {
 					hs.add(temp);

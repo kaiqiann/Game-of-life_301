@@ -28,6 +28,8 @@ public class PhenotypeTest {
 		String temp = "321 987, 221 332, 3431 3386, ";
 		Mutator mt = new Mutator();
 		List<Integer> temp1 = mt.Mutate(gn.intList(gn.getList()));
+		System.out.println(temp1);
+		System.out.println(gn.intList(gn.getList()));
 		gn.setGeno(mt.intList(temp1));
 		Phenotype pn = new Phenotype(gn);
 		assertNotEquals(temp,pn.getPheno());
