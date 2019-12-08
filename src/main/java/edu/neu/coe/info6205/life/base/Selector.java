@@ -19,7 +19,7 @@ class Selector {
 		}
 
 		List<Map.Entry<String, Behavior>> list = new ArrayList<>(select.entrySet());
-		Collections.sort(list, new Comparator<Map.Entry<String, Behavior>>() {
+		Collections.sort(list, new Comparator<Map.Entry<String, Behavior>>() { // Sort the Map entry list by generation, if generations are equal, then compare by growth rate.
 			@Override
 			public int compare(Map.Entry<String, Behavior> o1, Map.Entry<String, Behavior> o2) {
 				if (o2.getValue().generation > o1.getValue().generation)
@@ -35,7 +35,7 @@ class Selector {
 		});
 
 		patternList.clear();
-		for (int i = 0; i < list.size() / (1 / Profile.SURVIVE_RATE); i++) {
+		for (int i = 0; i < list.size() / (1 / Profile.SURVIVE_RATE); i++) { // Keep the Profile.SURVIVE_RATE of patterns.
 			patternList.add(list.get(i).getKey());
 			growrate +=list.get(i).getValue().growth;
 			gen += list.get(i).getValue().generation;
@@ -53,7 +53,7 @@ class Selector {
 		return generations;
 	}
 
-	public static String getBest(List<String> patternList) {
+	public static String getBest(List<String> patternList) {  // Find the best pattern in the last time.
 		Select(patternList);
 		Map<String, Double> select = new HashMap<>();
 //        for(String pattern: patternList){
