@@ -9,14 +9,14 @@ public class geneticAlgorithm {
 	private List<Double> gList = new ArrayList<>();
 	private List<Double> grList = new ArrayList<>();
 	private Mutator m = new Mutator();
-	
+
 	public List<String> initialPopulation() {
 		List<String> population = new ArrayList<>();
 		int j = 0;
 		for (int i = 0; i < Profile.GA_POPULATION; i++) {
-			InitialPattern ip = new InitialPattern(Profile.RANDOM_SEED+j);
+			InitialPattern ip = new InitialPattern(Profile.RANDOM_SEED + j);
 			population.add(ip.getPattern());
-			j+=2000;
+			j += 2000;
 		}
 		return population;
 	}
@@ -24,8 +24,10 @@ public class geneticAlgorithm {
 	public String run(List<String> population) {
 
 		for (int i = 0; i < Profile.MAX_GENERATION; i++) {
+			// Select
 			Selector.growrate = 0;
 			Selector.gen = 0;
+			System.out.println("----------------------------------------------");
 			System.out.println("current generation:" + (i + 1));
 			Selector.Select(population);
 			List<String> current = new ArrayList<>();
@@ -35,10 +37,12 @@ public class geneticAlgorithm {
 
 			for (String s : population) {
 				Genotype g = new Genotype();
-
+				// Phenotype ==> Genotype
 				g.toChro(s);
 				for (int j = 0; j < (1 / Profile.SURVIVE_RATE) - 1; j++) {
+					//Mutate
 					List<Integer> l = m.Mutate(g.intList(g.getList()));
+					// Genotype ==> Phenotype
 					List<Chromosome> cl = m.intList(l);
 					g.setGeno(cl);
 					Phenotype p = new Phenotype(g);
@@ -46,9 +50,9 @@ public class geneticAlgorithm {
 				}
 			}
 			population = current;
+			
 			gList.add(Selector.getGen());
 			grList.add(Selector.getRate());
-
 			System.out.println("Average Generation: " + Selector.getGen());
 			System.out.println("Average Growth Rate: " + Selector.getRate() + "\n");
 		}
@@ -61,6 +65,7 @@ public class geneticAlgorithm {
 			System.out.print(" ," + d);
 		}
 		System.out.println();
+		//get the best individual
 		return Selector.getBest(population);
 	}
 }
