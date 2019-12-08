@@ -107,9 +107,6 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		}
 		long generations = generation - game.generation;
 		return gRate * 100 / generations;
-//		long growth = (long) getCount() - game.getCount();
-//		long generations = generation - game.generation;
-//		return generations > 0 ? growth * 1.0 / generations : -0.1;
 	}
 
 	public static final int MaxGenerations = Profile.GAME_MAX_GENERATION;
@@ -135,7 +132,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 	}
 
 	/**
-	 * 
+	 * A life game run function that can check cycle 
 	 * 
 	 * @param pattern
 	 * @return
@@ -146,10 +143,8 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		List<Integer> clist = new ArrayList<>();
 		int index = 0;
 		Game g = create(0L, Point.points(pattern));
-		// BiConsumer<Long, Grid> gridMonitor = (l, gd) ->
-		// System.out.println("generation " + l + "; grid=" + gd);
 		BiConsumer<Long, Grid> gridMonitor = (l, gd) -> System.out.print("");
-
+		//store living cell number in a list
 		while (!g.terminated() && index < Profile.GAME_MAX_GENERATION) {
 			
 			int count = g.getCount();
@@ -168,7 +163,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		Collection cl = numMap.values();
 		Iterator itr = cl.iterator();
 		int n = Profile.CYCLECHECK_NUM - 1;
-
+		//check whether there exist cycle 
 		while (itr.hasNext()) {
 			List<Integer> list = (List<Integer>) itr.next();
 			if (list.size() >= 2) {
@@ -188,7 +183,6 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 							System.out.println("growth rate: " + g.growthRate() );
 							System.out.println("has cycle: " + index + " generations\n");
 							return new Behavior(g.generation/50,g.growthRate(),0);
-							//return index/50;
 						}
 					}
 				}
