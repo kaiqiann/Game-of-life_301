@@ -55,6 +55,8 @@ public class World extends JPanel implements Runnable{
 		currentGeneration=generation1;
 		nextGeneration=generation2;
 	}
+	
+	
 	public void transfrom(CellStatus[][] generation, int pauseshape[][])
 	{
 		for(int i=0;i<rows;i++)
@@ -120,13 +122,15 @@ public class World extends JPanel implements Runnable{
 			}
 		}
 	}
+	
+	//update the number of alive count
 	public void updateNumber()
 	{
 		String s = " survival count: " + lnum ;
 		record.setForeground(Color.BLACK);
 		record.setText(s);
 	}
-
+	// paint the points
 	public void paintComponent(Graphics g)
 	{
 		lnum=0;
@@ -150,19 +154,21 @@ public class World extends JPanel implements Runnable{
 				}
 			}
 		}
+		//if count matched pause
 		if(lnum ==World.count) {
 			setPause();
 			System.out.println(lnum);
 		}
 
 	}
-
+	//start operation
 	public void setShape()
 	{
 		
 		setShape(helper(World.pattern));
 		
 	}
+	
 	public int[][] helper(String s)
 	{
 		Genotype g = new Genotype();
@@ -181,35 +187,12 @@ public class World extends JPanel implements Runnable{
 		return shape;
 	}
 	
-	public void setZero()
-	{
-		for(int i=0;i<rows;i++)
-		{
-			for(int j=0;j<columns;j++)
-			{
-				zero[i][j]=0;
-			}
-		}
-	}
-	public void setStop()
-	{
-		setZero();		
-		shape=zero;
-		setShape(shape);
-		pauseshape=shape;
-	}
-	
 	public void setPause()
 	{
 		shape=pauseshape;
 		setShapetemp(pauseshape);
 	}
-	
-	public void setDiy()
-	{
-		shape=pauseshape;
-		setShapetemp(shape);
-	}
+	//used in pause
 	private void setShapetemp(int [][]shape)
 	{
 		isChanging=true;
@@ -244,6 +227,7 @@ public class World extends JPanel implements Runnable{
 //			this.notifyAll();
 		}
 	}
+	//used in start
 	private void setShape(int [][]shape)
 	{
 		isChanging=true;

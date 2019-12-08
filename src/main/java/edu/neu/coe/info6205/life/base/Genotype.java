@@ -10,6 +10,8 @@ public class Genotype {
 		geno = new ArrayList<>();
 	}
 	
+	// take a String 
+	//transform the string into a list of Chromosome
 	public void toChro(String p){
 		for (String w : p.split(", *")) {
 			String[] ws = w.split(" ");
@@ -31,7 +33,7 @@ public class Genotype {
 	public void setGeno(List<Chromosome> geno) {
 		this.geno = geno;
 	}
-
+	//transform list of chromosome into list of integer
 	public List<Integer> intList(List<Chromosome> geno){
 		List<Integer> ls = new ArrayList<Integer>();
 		geno.forEach(g -> ls.add(g.getChromosome()));

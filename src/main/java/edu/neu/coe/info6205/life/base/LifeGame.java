@@ -45,7 +45,7 @@ public class LifeGame extends JFrame {
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-
+	//to run the jframe
 	class StartActionListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
@@ -57,7 +57,7 @@ public class LifeGame extends JFrame {
 			world.setShape();
 		}
 	}
-
+	//to pause the program and print the count number
 	class PauseActionListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 

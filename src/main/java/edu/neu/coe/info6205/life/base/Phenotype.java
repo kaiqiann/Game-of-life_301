@@ -15,7 +15,7 @@ public class Phenotype {
 	public Phenotype(String pheno) {
 		this.pheno = pheno;
 	}
-	
+	//transform geno's list<Chromosome> into string
 	private void transform(Genotype geno) {
 		StringBuilder sb = new StringBuilder();
 		geno.getList().forEach(g -> {

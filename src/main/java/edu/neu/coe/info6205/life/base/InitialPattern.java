@@ -25,7 +25,7 @@ public class InitialPattern {
 	}
 	/**
 	 * Initialize function basically generates a string of points
-	 * 9 blocks as a unit to generate multiple points and append into string builder
+	 * 15*15 blocks as a unit to generate multiple points and append into string builder
 	 * uses set to eliminate duplicate points
 	 */
 	public void initialize(long seed) {
