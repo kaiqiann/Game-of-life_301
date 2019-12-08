@@ -34,11 +34,11 @@ class Mutator {
 			// 2 to 5 bits represent y, 6 to 9 bits represent y
 			// So the Chromosome is like (1/2)(Y)(X)
 			
-			if (moveNum < Profile.MUTATE_PROBABILITY) {
+			if (moveNum < Profile.MUTATE_PROBABILITY) {  // if moveNum < Profile.MUTATE_PROBABILITY, then Mutate.
 				if (muteNum < 0.5) {
 					double xr = rd.nextDouble();
 					if (xr < 0.5) {
-						if (xNum < 0.5 && (x + 10) <= 1000) {
+						if (xNum < 0.5 && (x + 10) <= 1000) { // Make sure do not over the boundary.
 							x += 10;
 						}
 						if (xNum >= 0.5 && (x - 10) >= 0) {
@@ -72,12 +72,12 @@ class Mutator {
 				}
 			}
 
-			if (liveNum < Profile.DELETE_PROBABILITY) {
+			if (liveNum < Profile.DELETE_PROBABILITY) { // if liveNum < Profile.DELETE_PROBABILITY, the change the status of alive/died.
 				if (alive == 1)
 					alive = 2;
 			}
 
-			// 重新拼接code
+			// Resplice the code again.
 			i = alive * 100000000 + y * 10000 + x;
 //            if(alive == 1) 
 			mutagene.add(i);
