@@ -30,8 +30,10 @@ class Mutator {
 			double muteNum = rd.nextDouble();
 			double moveNum = rd.nextDouble();
 
-			// Mutate the genecode，第一位为1/2，1代表存活，2代表死亡
-			// 2-5位为y，6-9位为x
+			// Mutate the genecode, The first bit is 1/2, 1 represents alive, 2 means died.
+			// 2 to 5 bits represent y, 6 to 9 bits represent y
+			// So the Chromosome is like (1/2)(Y)(X)
+			
 			if (moveNum < Profile.MUTATE_PROBABILITY) {
 				if (muteNum < 0.5) {
 					double xr = rd.nextDouble();
