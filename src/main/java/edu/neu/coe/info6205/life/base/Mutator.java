@@ -83,7 +83,7 @@ class Mutator {
 			mutagene.add(i);
 		}
 
-		// Add random gene
+		// Add random pattern to the List, based on Profile.ADD_PROBABILITY to add new.
 		List<Integer> res = new ArrayList<>();
 		for (int i : mutagene)
 			res.add(i);
@@ -93,7 +93,9 @@ class Mutator {
 			int alive = i / 100000000;
 			double addNum = rd.nextDouble();
 			if (addNum < Profile.ADD_PROBABILITY) {
-				int random_index = (int) (1 + rd.nextDouble() * (7 - 1 + 1));
+				int random_index = (int) (1 + rd.nextDouble() * (7 - 1 + 1)); // Inital random number from 1-8    812
+											      // The directions is like           7X3
+											      //                                  654
 				if (random_index == 1 && (y + 1) <= 1000) {
 					y++;
 				}
